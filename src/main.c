@@ -44,15 +44,26 @@ int scanner_process(const char *content, int content_len)
     int euqal = 0;
     for(int i=0; i<content_len; i++)
     {
-        if(i<content_len-1){
-            if(content[i]=='='&&content[i+1]=='='){
+        if(i<content_len-1)
+        {
+            if(content[i]=='='&&content[i+1]=='=')
+            {
                 printf("EQUAL_EQUAL == null\n");
+                i=i+1;
+                continue;
+            }
+            if(content[i]=='!'&&content[i+1]=='=')
+            {
+                printf("BANG_EQUAL != null\n");
                 i=i+1;
                 continue;
             }
         }
         switch(content[i])
         {
+            case '!':
+                printf("BANG ! null\n");
+            break;
             case '(':
                 printf("LEFT_PAREN ( null\n");
             break;
