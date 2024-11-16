@@ -68,7 +68,6 @@ int scanner_process(const char *content)
             {
                 skip_line = 0;
             }
-            continue;
         }
         if (i < strlen(content) - 1)
         {
