@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 char *read_file_contents(const char *filename);
-void scanner_process(const char *content, int content_len);
+int scanner_process(const char *content, int content_len);
 int main(int argc, char *argv[]) {
     // Disable output buffering
     setbuf(stdout, NULL);
@@ -22,9 +22,9 @@ int main(int argc, char *argv[]) {
 
         // Uncomment this block to pass the first stage
         if (strlen(file_contents) > 0) {
-            scanner_process(file_contents, strlen(file_contents));
+            int exits = scanner_process(file_contents, strlen(file_contents));
             // fprintf(stderr, "Scanner not implemented\n");
-            exit(0);
+            exit(exits);
         } 
         printf("EOF  null\n"); // Placeholder, remove this line when implementing the scanner
         
@@ -37,9 +37,10 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void scanner_process(const char *content, int content_len)
+int scanner_process(const char *content, int content_len)
 {
     int lines = 1;
+    int exits = 0;
     for(int i=0; i<content_len; i++)
     {
         switch(content[i])
@@ -79,12 +80,14 @@ void scanner_process(const char *content, int content_len)
             break;
             default:
                 fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
+                exits = 65
                 goto ends;
             break;
         }
     }
     ends:
     printf("EOF  null\n");
+    return exits;
 }
 
 char *read_file_contents(const char *filename) {
