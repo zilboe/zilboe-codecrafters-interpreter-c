@@ -55,7 +55,6 @@ int scanner_process(char *content)
     unsigned int strings_end = 0;
     unsigned char strings_lines = 0;
     unsigned char skip_line = 0;
-    printf("len=[%d]\n", strlen(content));
     for (int i = 0; i < strlen(content); i++)
     {
         if (skip_line)
@@ -205,6 +204,7 @@ int scanner_process(char *content)
         exits = 65;
     }
     printf("EOF  null\n");
+    printf("len=[%d]\n", strlen(content));
     return exits;
 }
 
