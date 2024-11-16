@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 char *read_file_contents(const char *filename);
 void scanner_process(const char *content, int content_len);
 int main(int argc, char *argv[]) {
@@ -15,7 +14,6 @@ int main(int argc, char *argv[]) {
     }
 
     const char *command = argv[1];
-
     if (strcmp(command, "tokenize") == 0) {
         // // You can use print statements as follows for debugging, they'll be visible when running tests.
         // fprintf(stderr, "Logs from your program will appear here!\n");
@@ -41,6 +39,7 @@ int main(int argc, char *argv[]) {
 
 void scanner_process(const char *content, int content_len)
 {
+    int lines = 1;
     for(int i=0; i<content_len; i++)
     {
         switch(content[i])
@@ -74,6 +73,13 @@ void scanner_process(const char *content, int content_len)
             break;
             case ';':
                 printf("SEMICOLON ; null\n");
+            break;
+            case '\n':
+                lines++;
+            break;
+            default:
+                fprintf(stderr, "[line %d] Error: Unexpected character: %c", lines, content[i]);
+                exit(65);
             break;
         }
     }
