@@ -51,11 +51,9 @@ void scanner_process(const char *content, int content_len)
             case ')':
                 printf("RIGHT_PAREN ) null\n");
             break;
-            default:
-                printf("EOF  null\n");
-            break;
         }
     }
+    printf("EOF  null\n");
 }
 
 char *read_file_contents(const char *filename) {
