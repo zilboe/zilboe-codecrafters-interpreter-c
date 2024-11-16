@@ -72,6 +72,12 @@ int scanner_process(char *content)
             skip_line = 0;
             break;
         }
+        if(content[i]=='@')
+        {
+            fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
+            exits = 65;
+            continue;
+        }
         // if(strncmp(content+i, skip_tab, strlen(skip_tab))==0)
         // {
         //     i=i+strlen(skip_tab)-1;
@@ -193,8 +199,6 @@ int scanner_process(char *content)
             printf("EQUAL = null\n");
             break;
         default:
-            fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
-            exits = 65;
             break;
         }
     }
