@@ -84,9 +84,10 @@ int scanner_process(char *content)
                 strings_flag = 0;
                 strings_valid = 2;
                 strings_end = i;
-                char *get_strings = (char *)malloc(sizeof(char) * (strings_end - strings_start));
+                char *get_strings = (char *)malloc(sizeof(char) * (strings_end - strings_start)+1);
                 memset(get_strings, 0x00, (strings_end - strings_start));
                 memcpy(get_strings, content + strings_start, (strings_end - strings_start));
+                get_strings[(strings_end - strings_start)] = '\0';
                 printf("STRING \"%s\" %s\n", get_strings, get_strings);
             }
             continue;
