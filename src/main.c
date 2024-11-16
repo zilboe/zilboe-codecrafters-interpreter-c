@@ -52,6 +52,7 @@ int scanner_process(const char *content)
     unsigned char skip_line = 0;
     for (int i = 0; i < strlen(content); i++)
     {
+        printf("ch = %c\n", content[i]);
         if (strncmp(content + i, skip_tab, strlen(skip_tab)) == 0)
         {
             i = i + strlen(skip_tab)-1;
@@ -62,7 +63,6 @@ int scanner_process(const char *content)
             i = i + strlen(skip_space)-1;
             continue;
         }
-        printf("len = %c\n", content[i]);
         if (skip_line)
         {
             if (content[i] == '\n')
