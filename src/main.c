@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 char *read_file_contents(const char *filename);
-int scanner_process(const char *content);
+int scanner_process(char *content);
 int main(int argc, char *argv[])
 {
     // Disable output buffering
@@ -42,13 +42,16 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-const char *skip_tab = "<|TAB|>";
-const char *skip_space = "<|SPACE|>";
-int scanner_process(const char *content)
+int scanner_process(char *content)
 {
     unsigned char lines = 1;
     unsigned char exits = 0;
     unsigned char euqal = 0;
+    unsigned char strings_flag = 0;
+    unsigned int strings_valid = 0;
+    unsigned int strings_start = 0;
+    unsigned int strings_end = 0;
+    unsigned char strings_lines = 0;
     unsigned char skip_line = 0;
     for (int i = 0; i < strlen(content); i++)
     {
@@ -59,6 +62,37 @@ int scanner_process(const char *content)
                 lines++;
                 skip_line = 0;
             }
+            continue;
+        }
+        if (content[i] == '\n')
+        {
+            lines++;
+            skip_line = 0;
+            break;
+        }
+        if (content[i] == '\"')
+        {
+            if (strings_flag == 0)
+            {
+                strings_flag = 1;
+                strings_start = i + 1;
+                strings_valid = 1;
+                strings_lines = lines;
+            }
+            else
+            {
+                strings_flag = 0;
+                strings_valid = 2;
+                strings_end = i;
+                char *get_strings = (char *)malloc(sizeof(char) * (strings_end - strings_start));
+                memset(get_strings, 0x00, (strings_end - strings_start));
+                memcpy(get_strings, content + strings_start, (strings_end - strings_start));
+                printf("STRING \"%s\" %s\n", get_strings, get_strings);
+            }
+            continue;
+        }
+        if (strings_flag)
+        {
             continue;
         }
         if (i < strlen(content) - 1)
@@ -96,10 +130,6 @@ int scanner_process(const char *content)
         }
         switch (content[i])
         {
-        case '\n':
-            lines++;
-            skip_line = 0;
-        break;
         case ' ':
             break;
         case 0x09:
@@ -154,6 +184,10 @@ int scanner_process(const char *content)
             exits = 65;
             break;
         }
+    }
+    if (strings_valid == 1)
+    {
+        fprintf(stderr, "[line %d] Error: Unterminated string.\n", strings_lines);
     }
     printf("EOF  null\n");
     return exits;
