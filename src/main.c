@@ -189,6 +189,7 @@ int scanner_process(char *content)
     if (strings_valid == 1)
     {
         fprintf(stderr, "[line %d] Error: Unterminated string.\n", strings_lines);
+        exits = 65;
     }
     printf("EOF  null\n");
     return exits;
