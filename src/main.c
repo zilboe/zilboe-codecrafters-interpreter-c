@@ -72,6 +72,9 @@ void scanner_process(const char *content, int content_len)
             case '-':
                 printf("MINUS - null\n");
             break;
+            case ';':
+                printf("SEMICOLON ; null\n");
+            break;
         }
     }
     printf("EOF  null\n");
