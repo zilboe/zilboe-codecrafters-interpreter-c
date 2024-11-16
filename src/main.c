@@ -72,12 +72,6 @@ int scanner_process(char *content)
             skip_line = 0;
             break;
         }
-        if(content[i]=='@')
-        {
-            fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
-            exits = 65;
-            continue;
-        }
         // if(strncmp(content+i, skip_tab, strlen(skip_tab))==0)
         // {
         //     i=i+strlen(skip_tab)-1;
@@ -102,7 +96,7 @@ int scanner_process(char *content)
                 strings_flag = 0;
                 strings_valid = 2;
                 strings_end = i;
-                char *get_strings = (char *)malloc(sizeof(char) * (strings_end - strings_start)+1);
+                char *get_strings = (char *)malloc(sizeof(char) * (strings_end - strings_start) + 1);
                 memset(get_strings, 0x00, (strings_end - strings_start));
                 memcpy(get_strings, content + strings_start, (strings_end - strings_start));
                 get_strings[(strings_end - strings_start)] = '\0';
@@ -199,6 +193,8 @@ int scanner_process(char *content)
             printf("EQUAL = null\n");
             break;
         default:
+            fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
+            exits = 65;
             break;
         }
     }
@@ -208,7 +204,7 @@ int scanner_process(char *content)
         exits = 65;
     }
     printf("EOF  null\n");
-    return exits;
+    return 65;
 }
 
 char *read_file_contents(const char *filename)
