@@ -204,7 +204,7 @@ int scanner_process(char *content)
         exits = 65;
     }
     printf("EOF  null\n");
-    return 65;
+    return exits;
 }
 
 char *read_file_contents(const char *filename)
