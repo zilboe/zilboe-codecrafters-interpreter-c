@@ -52,20 +52,11 @@ int scanner_process(const char *content)
     unsigned char skip_line = 0;
     for (int i = 0; i < strlen(content); i++)
     {
-        // if (strncmp(content + i, skip_tab, strlen(skip_tab)) == 0)
-        // {
-        //     i = i + strlen(skip_tab)-1;
-        //     continue;
-        // }
-        // if (strncmp(content + i, skip_space, strlen(skip_space)) == 0)
-        // {
-        //     i = i + strlen(skip_space)-1;
-        //     continue;
-        // }
         if (skip_line)
         {
             if (content[i] == '\n')
             {
+                lines++;
                 skip_line = 0;
             }
             continue;
@@ -106,9 +97,9 @@ int scanner_process(const char *content)
         switch (content[i])
         {
         case '\n':
-            skip_line = 0;
             lines++;
-            break;
+            skip_line = 0;
+        break;
         case ' ':
             break;
         case 0x09:
