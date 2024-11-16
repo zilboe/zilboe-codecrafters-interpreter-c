@@ -54,12 +54,12 @@ int scanner_process(const char *content)
     {
         if (strncmp(content + i, skip_tab, strlen(skip_tab)) == 0)
         {
-            i = i + strlen(skip_tab)-1;
+            i = i + strlen(skip_tab);
             continue;
         }
         if (strncmp(content + i, skip_space, strlen(skip_space)) == 0)
         {
-            i = i + strlen(skip_space)-1;
+            i = i + strlen(skip_space);
             continue;
         }
         if (skip_line)
