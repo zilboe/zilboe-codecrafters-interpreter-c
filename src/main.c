@@ -111,6 +111,8 @@ int scanner_process(const char *content)
         {
         case ' ':
         break;
+        case 0x09:
+        break;
         case '\n':
             skip_line = 0;
             lines++;
