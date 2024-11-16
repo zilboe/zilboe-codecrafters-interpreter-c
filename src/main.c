@@ -69,6 +69,9 @@ void scanner_process(const char *content, int content_len)
             case '+':
                 printf("PLUS + null\n");
             break;
+            case '-':
+                printf("MINUS - null\n");
+            break;
         }
     }
     printf("EOF  null\n");
