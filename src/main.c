@@ -81,7 +81,6 @@ int scanner_process(const char *content, int content_len)
             default:
                 fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
                 exits = 65;
-                goto ends;
             break;
         }
     }
