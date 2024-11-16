@@ -78,11 +78,12 @@ void scanner_process(const char *content, int content_len)
                 lines++;
             break;
             default:
-                fprintf(stderr, "[line %d] Error: Unexpected character: %c", lines, content[i]);
-                exit(65);
+                fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
+                goto ends;
             break;
         }
     }
+    ends:
     printf("EOF  null\n");
 }
 
