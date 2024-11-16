@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
         if (strlen(file_contents) > 0) {
             scanner_process(file_contents, strlen(file_contents));
             // fprintf(stderr, "Scanner not implemented\n");
-            exit(1);
+            exit(0);
         } 
         printf("EOF  null\n"); // Placeholder, remove this line when implementing the scanner
         
