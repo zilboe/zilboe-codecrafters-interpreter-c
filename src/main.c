@@ -59,10 +59,10 @@ int scanner_process(const char *content)
         }
         if (strncmp(content + i, skip_space, strlen(skip_space)) == 0)
         {
-            printf("len = %d\n", strlen(content));
             i = i + strlen(skip_space)-1;
             continue;
         }
+        printf("len = %c\n", content[i]);
         if (skip_line)
         {
             if (content[i] == '\n')
