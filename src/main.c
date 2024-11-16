@@ -204,7 +204,6 @@ int scanner_process(char *content)
         exits = 65;
     }
     printf("EOF  null\n");
-    printf("len=[%d]\n", strlen(content));
     return exits;
 }
 
