@@ -58,9 +58,27 @@ int scanner_process(const char *content, int content_len)
                 i=i+1;
                 continue;
             }
+            if(content[i]=='<'&&content[i+1]=='=')
+            {
+                printf("LESS_EQUAL <= null\n");
+                i=i+1;
+                continue;
+            }
+            if(content[i]=='>'&&content[i+1]=='=')
+            {
+                printf("GREATER_EQUAL >= null\n");
+                i=i+1;
+                continue;
+            }
         }
         switch(content[i])
         {
+            case '<':
+                printf("LESS < null\n");
+            break;
+            case '>':
+                printf("GREATER > null\n");
+            break;
             case '!':
                 printf("BANG ! null\n");
             break;
