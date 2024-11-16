@@ -105,13 +105,13 @@ int scanner_process(const char *content)
         }
         switch (content[i])
         {
-        case ' ':
-        break;
-        case 0x09:
-        break;
         case '\n':
             skip_line = 0;
             lines++;
+            break;
+        case ' ':
+            break;
+        case 0x09:
             break;
         case '/':
             printf("SLASH / null\n");
