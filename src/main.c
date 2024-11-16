@@ -55,6 +55,7 @@ int scanner_process(char *content)
     unsigned int strings_end = 0;
     unsigned char strings_lines = 0;
     unsigned char skip_line = 0;
+    printf("len=[%d]\n", strlen(content));
     for (int i = 0; i < strlen(content); i++)
     {
         if (skip_line)
@@ -72,16 +73,16 @@ int scanner_process(char *content)
             skip_line = 0;
             break;
         }
-        if(strncmp(content+i, skip_tab, strlen(skip_tab))==0)
-        {
-            i=i+strlen(skip_tab)-1;
-            continue;
-        }
-        if(strncmp(content+i, skip_space, strlen(skip_tab))==0)
-        {
-            i=i+strlen(skip_space)-1;
-            continue;
-        }
+        // if(strncmp(content+i, skip_tab, strlen(skip_tab))==0)
+        // {
+        //     i=i+strlen(skip_tab)-1;
+        //     continue;
+        // }
+        // if(strncmp(content+i, skip_space, strlen(skip_tab))==0)
+        // {
+        //     i=i+strlen(skip_space)-1;
+        //     continue;
+        // }
         if (content[i] == '\"')
         {
             if (strings_flag == 0)
