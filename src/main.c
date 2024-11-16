@@ -141,7 +141,6 @@ int scanner_process(char *content)
                 continue;
             }
         }
-        printf("ch=[%c]\n", content[i]);
         switch (content[i])
         {
         case ' ':
