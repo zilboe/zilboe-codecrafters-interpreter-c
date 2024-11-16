@@ -51,6 +51,12 @@ void scanner_process(const char *content, int content_len)
             case ')':
                 printf("RIGHT_PAREN ) null\n");
             break;
+            case '{':
+                printf("LEFT_BRACE { null\n");
+            break;
+            case '}':
+                printf("RIGHT_BRACE } null\n");
+            break;
         }
     }
     printf("EOF  null\n");
