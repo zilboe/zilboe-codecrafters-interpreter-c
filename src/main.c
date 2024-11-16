@@ -39,13 +39,28 @@ int main(int argc, char *argv[]) {
 
 int scanner_process(const char *content, int content_len)
 {
-    int lines = 1;
-    int exits = 0;
-    int euqal = 0;
+    unsigned char lines = 1;
+    unsigned char exits = 0;
+    unsigned char euqal = 0;
+    unsigned char skip_line = 0;
     for(int i=0; i<content_len; i++)
     {
+        if(skip_line)
+        {
+            if(content[i]=='\n')
+            {
+                skip_line = 0;;
+            }
+            continue;
+        }
         if(i<content_len-1)
         {
+            if(content[i]=='/'&&content[i+1]=='/')
+            {
+                skip_line = 1;
+                i=i+1;
+                continue;
+            }
             if(content[i]=='='&&content[i+1]=='=')
             {
                 printf("EQUAL_EQUAL == null\n");
@@ -73,6 +88,9 @@ int scanner_process(const char *content, int content_len)
         }
         switch(content[i])
         {
+            case '/':
+                printf("SLASH / null\n");
+            break;
             case '<':
                 printf("LESS < null\n");
             break;
