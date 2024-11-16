@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+const char *skip_tab = "<|TAB|>";
+const char *skip_space = "<|SPACE|>";
 int scanner_process(char *content)
 {
     unsigned char lines = 1;
@@ -69,6 +71,16 @@ int scanner_process(char *content)
             lines++;
             skip_line = 0;
             break;
+        }
+        if(strncmp(content+i, skip_tab, strlen(skip_tab))==0)
+        {
+            i=i+strlen(skip_tab)-1;
+            continue;
+        }
+        if(strncmp(content+i, skip_space, strlen(skip_tab))==0)
+        {
+            i=i+strlen(skip_space)-1;
+            continue;
         }
         if (content[i] == '\"')
         {
