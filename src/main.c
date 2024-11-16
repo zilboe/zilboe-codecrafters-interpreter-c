@@ -41,8 +41,16 @@ int scanner_process(const char *content, int content_len)
 {
     int lines = 1;
     int exits = 0;
+    int euqal = 0;
     for(int i=0; i<content_len; i++)
     {
+        if(i<content_len-1){
+            if(content[i]=='='&&content[i+1]=='='){
+                printf("EQUAL_EQUAL == null\n");
+                i=i+1;
+                continue;
+            }
+        }
         switch(content[i])
         {
             case '(':
@@ -77,6 +85,9 @@ int scanner_process(const char *content, int content_len)
             break;
             case '\n':
                 lines++;
+            break;
+            case '=':
+                printf("EQUAL = null\n");
             break;
             default:
                 fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", lines, content[i]);
